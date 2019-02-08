@@ -3,11 +3,11 @@ services:
   db:
     image: postgres:9.3.16
     ports:
-      - "5433:5432"
-
+      - "5432"
+    
   web:
     build: .
-    command: bash -c "which rails && rails server -p 3000 -b 0.0.0.0"
+    command: bash -c "which rails && printenv && rails server -p 3000 -b 0.0.0.0"
     ports:
       - "3000:3000"
     links:
