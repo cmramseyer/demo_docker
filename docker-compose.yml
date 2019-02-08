@@ -2,19 +2,12 @@ version: '2'
 services:
   db:
     image: postgres:9.3.16
-    volumes:
-      - "/var/lib/postgresql/9.3/main/"
     ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      PGDATA: /var/lib/postgresql/9.3/main/
-      POSTGRES_DB: demo_docker_development
+      - "5433:5432"
 
   web:
     build: .
-    command: bundle exec rails s -p 3000 -b 0.0.0.0
+    command: bash -c "which rails && rails server -p 3000 -b 0.0.0.0"
     ports:
       - "3000:3000"
     links:
